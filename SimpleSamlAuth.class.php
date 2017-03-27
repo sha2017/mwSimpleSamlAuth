@@ -255,6 +255,7 @@ class SimpleSamlAuth {
 
 		if ( self::$as->isAuthenticated() ) {
 			$attr = self::$as->getAttributes();
+			$attr[$wgSamlUsernameAttr] = str_replace('_', ' ', $attr[$wgSamlUsernameAttr]);
 			if ( !User::isUsableName( $wgContLang->ucfirst( reset( $attr[$wgSamlUsernameAttr] ) ) ) ) {
 				return 'Illegal username: ' . reset( $attr[$wgSamlUsernameAttr] );
 			}
